@@ -1,0 +1,9 @@
+.nav-list{
+    list-style: none;
+    display: inline-flex;
+}
+
+.btn {
+    margin: 10px;
+    padding: 5px;
+}
