@@ -60,7 +60,9 @@ header {
     flex-direction: column;
     gap: 1rem;
     align-items: flex-start;
-    padding-inline: 1rem;
+    padding-inline: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .nav-list {
@@ -95,13 +97,28 @@ header {
 
 main {
     padding: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .all-pokemon {
     display: grid;
     /*1 fr stands for 1 part of the available space for the grid, in this case columns*/
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1rem;
+
+}
+
+@media screen and (min-width: 470px) {
+    .all-pokemon {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .all-pokemon {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 .pokemon {
