@@ -2,13 +2,26 @@ const pokemonList = document.querySelector("#pokemonList");
 const buttonsHeader = document.querySelectorAll(".btn-header");
 let URL = "https://pokeapi.co/api/v2/pokemon/";
 
-fetchPokemon();
+// Page starts in see-all pokemon
+fetchSequentially("see-all")
 
-async function fetchPokemon() {
+async function fetchSequentially(filterType) {
     for (let i = 1; i <= 151; i++) {
-        await fetch(URL + i)
-                .then(response => response.json())
-                .then(data => showPokemon(data))
+        await fetchPokemon(i, filterType);
+    }    
+}
+
+async function fetchPokemon(id, filterType) {
+    const response = await fetch(URL + id);
+    const data = await response.json();
+    if(filterType === "see-all"){
+        showPokemon(data);
+    }
+    else {
+        const types = data.types.map(type => type.type.name)
+        if(types.includes(filterType)) {
+            showPokemon(data);
+        }
     }
 }
 
@@ -50,19 +63,5 @@ buttonsHeader.forEach(button => button.addEventListener("click", (event) => {
 
     pokemonList.innerHTML = ""
 
-    for(let i = 1; i <= 151; i++) {
-        fetch(URL + i)
-            .then(response => response.json())
-            .then(data => {
-                if(idButton === "see-all"){
-                    showPokemon(data);
-                }
-                else {
-                    const types = data.types.map(type => type.type.name)
-                    if(types.includes(idButton)) {
-                        showPokemon(data);
-                    }
-                }
-            })
-    }
+    fetchSequentially(idButton)
 }))
