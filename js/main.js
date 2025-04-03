@@ -30,7 +30,10 @@ function showPokemon(pokemon) {
     types = types.join('');
 
     let pokemonId = pokemon.id.toString();
-    pokemonId = pokemonId.padStart(3, "0")
+    pokemonId = pokemonId.padStart(3, "0");
+
+    let pokemonHeight = (pokemon.height/10).toFixed(1);
+    let pokemonWeight = (pokemon.weight/10).toFixed(1);
 
     const div = document.createElement("div");
     div.classList.add("pokemon");
@@ -52,8 +55,8 @@ function showPokemon(pokemon) {
                             ${types}
                         </div>
                         <div class="pokemon-stats">
-                            <p class="stat">${pokemon.height}m</p>
-                            <p class="stat">${pokemon.weight}kg</p>
+                            <p class="stat">${pokemonHeight}m</p>
+                            <p class="stat">${pokemonWeight}kg</p>
                         </div>
                     </div>`;
     pokemonList.append(div);
