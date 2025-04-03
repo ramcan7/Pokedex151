@@ -147,6 +147,12 @@ main {
     padding-inline: 1rem;
     display: flex;
     justify-content: center;
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.pokemon-image:hover {
+    transform: scale(1.2);
 }
 
 .pokemon-info {
