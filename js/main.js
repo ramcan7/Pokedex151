@@ -38,6 +38,7 @@ function showPokemon(pokemon) {
                     <div class="pokemon-image">
                         <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
                     </div>
+                    <audio class="pokemon-sound" src="${pokemon.cries.latest}" type="audio/ogg"> </audio>
                     <div class="pokemon-info">
                         <div class="name-container">
                             <p class="pokemon-id">
@@ -65,3 +66,14 @@ buttonsHeader.forEach(button => button.addEventListener("click", (event) => {
 
     fetchSequentially(idButton)
 }))
+
+pokemonList.addEventListener("click", (event) => {
+    if (event.target.closest(".pokemon-image")) {
+        const pokemonCard = event.target.closest(".pokemon");
+        const audioElement = pokemonCard.querySelector(".pokemon-sound");
+
+        if(audioElement) {
+            audioElement.play();
+        }
+    }
+})
